@@ -53,8 +53,8 @@ sound.beta_soundtrack()
 
 while True:
     clock.tick(30)
+    player.update(tiles)
     for action in pygame.event.get():
-        player.player_movement(action)
         if action.type == pygame.QUIT:
             sound.stop_music()
             exit()

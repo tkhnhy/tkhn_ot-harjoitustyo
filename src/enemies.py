@@ -4,7 +4,7 @@ class Slime(pygame.sprite.Sprite):
     def __init__(self, x, y):
         
         self.sprite = pygame.image.load("assets/temp/blueslime0000.png")
-        self.sprite = pygame.transform.scale(self.sprite, (48, 32))
+        self.sprite = pygame.transform.scale(self.sprite, (24, 16))
 
         self.rect = self.sprite.get_rect()
         self.rect.x = x
