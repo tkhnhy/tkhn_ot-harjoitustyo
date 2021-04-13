@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "tkhn_ot-harjoitustyo"
+version = "0.1.0"
+description = ""
+authors = ["TommiWindows <tommi.kohonen21@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pygame = "^2.0.1"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.7.4"
+pytest = "^6.2.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
