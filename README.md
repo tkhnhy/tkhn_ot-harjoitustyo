@@ -1,27 +1,10 @@
-# OT-Harjoitustyö
+# A basic turn based RPG
 
-## Tehtävät
+## Features:
+* Explore the world and fight monsters in turn based combat (WIP)
 
-### Viikko 1
+### Controls:
+* Move with WASD
+* Exit by pressing x in the window
 
-[gitlog.txt](https://github.com/tkhnhy/tkhn_ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](https://github.com/tkhnhy/tkhn_ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-*Italic*
-
-**Bold**
-
-### Toinen otsikko
-
-* Lista 1
-* Lista 2
-	* Lista 2.1
-
-[YouTube](https://youtube.com)
-
-#### Viimeinen otsikko
-
-Epäsynkronointi
-
-Tämä on kirjoitettu windowsilla toisella koneella
+All assets are self-made
