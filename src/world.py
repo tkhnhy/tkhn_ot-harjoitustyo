@@ -2,16 +2,24 @@ import pygame, csv
 from spritesheet import Spritesheet
 
 class Tile(pygame.sprite.Sprite):
-    def __init__(self, image, x, y, spritesheet):
+    def __init__(self, image, x, y, spritesheet, type: int):
         super().__init__()
         pygame.sprite.Sprite.__init__(self)
         self.image = spritesheet.parse_sprite(image)
         self.image = pygame.transform.scale(self.image, (32, 32))
         self.x = x
         self.y = y
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.type = type
+        #Types: 0: Background tile, 1: solid tile
     
     def draw_tile(self, output):
-        output.blit(self.image, (self.x, self.y))
+            output.blit(self.image, (self.x, self.y))
+
+    def ret_solid(self):
+        return self.type
 
 class Map:
     def __init__(self, filename):
