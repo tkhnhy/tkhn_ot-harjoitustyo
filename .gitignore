@@ -1,4 +1,3 @@
 .pylintrc
 .vscode
-src/assets/temp
 src/__pycache__
