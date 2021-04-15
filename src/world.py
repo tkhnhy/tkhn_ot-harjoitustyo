@@ -31,3 +31,20 @@ class Map:
                 level.append(row)
             return level
 
+def make_tile_map(file, tilesize, spritesheet, sheetitems):
+    sheetitems = sheetitems
+    map = []
+    xloc = 0
+    yloc = 0
+    for row in file:
+        for i in row:
+            if i == "0":
+                map.append(Tile(sheetitems[0][0], xloc, yloc, spritesheet, sheetitems[0][1]))
+            elif i == "1":
+                map.append(Tile(sheetitems[1][0], xloc, yloc, spritesheet, sheetitems[1][1]))
+            else:
+                pass
+            xloc += tilesize
+        xloc = 0
+        yloc += tilesize
+    return map

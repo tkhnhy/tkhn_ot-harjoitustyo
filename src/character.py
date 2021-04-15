@@ -3,10 +3,10 @@ import gamedisplay
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, tile):
+    def __init__(self, x, y):
         super().__init__()
 
-        self.sprite_standing = pygame.image.load("assets/sprites/playerstanding.png")
+        self.sprite_standing = pygame.image.load("src/assets/sprites/playerstanding.png")
         self.sprite_standing = pygame.transform.scale(self.sprite_standing, (32, 32))
 
         self.speed = 2
@@ -15,9 +15,9 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.sprite_standing.get_rect()
         self.rect.x = x
         self.rect.y = y
-
-        self.tile = tile
     
+        self.health = 100
+
     def movement_controls(self):
         self.dx, self.dy = 0, 0
         controls = pygame.key.get_pressed()
@@ -37,14 +37,21 @@ class Player(pygame.sprite.Sprite):
         if self.check_collision(tilegroup):
             self.rect.x -= self.dx
             self.rect.y -= self.dy
-    
+
     def check_collision(self, tiles):
         for i in tiles:
-            if self.rect.colliderect(i) and i.ret_type() == 1:
-                return True
+            if self.rect.colliderect(i) and i.ret_type() == 1:   
+               return True
         return False
+
+    def check_collision_enemy(self, enemy):
+            for i in enemy:
+                if self.rect.colliderect(i):
+                    enemy.remove(i)
 
     def playerdraw(self, output):
         output.blit(self.sprite_standing, (self.rect.x, self.rect.y))
-            
+    
+    def reduce_health(self, amount):
+        self.health -= amount
         

@@ -1,6 +1,6 @@
 import pygame
 import character, gamedisplay, sound, enemies
-from world import Map, Tile
+from world import Map, Tile, make_tile_map
 from spritesheet import Spritesheet
 
 pygame.init()
@@ -11,51 +11,33 @@ clock = pygame.time.Clock()
 
 def drawscreen():
     screen.fill((173, 173, 173))
-    for i in tiles:
-        i.draw_tile(screen)
+    for tile in level:
+        tile.draw_tile(screen)
     player.playerdraw(screen)
     for i in slimelist:
-        i.slimedraw(screen)
+        i.draw(screen)
     pygame.display.flip()
 
-
-overworld1_spritesheet = Spritesheet('assets/temp/texturepack.png')
-sheet_names = ['grass0000.png','sand0000.png']
-
-def make_tile_map(file, tilesize, spritesheet):
-    map = []
-    xloc = 0
-    yloc = 0
-    for row in file:
-        for i in row:
-            if i == "0":
-                map.append(Tile('grass0000.png', xloc, yloc, spritesheet, 1))
-            elif i == "1":
-                map.append(Tile('sand0000.png', xloc, yloc, spritesheet, 0))
-            else:
-                pass
-            xloc += tilesize
-        xloc = 0
-        yloc += tilesize
-    return map
-
 #Screen 1
-level = Map("assets/temp/level1.csv")
+overworld1_spritesheet = Spritesheet('src/assets/temp/texturepack.png')
+sheet_items = [('grass0000.png', 1),('sand0000.png', 0)]
+
+level = Map("src/assets/temp/level1.csv")
 level = level.create_map()
-tiles = make_tile_map(level, 32, overworld1_spritesheet)
+level = make_tile_map(level, 32, overworld1_spritesheet,sheet_items)
 
-player = character.Player(224, 0, tiles)
-slime = enemies.Slime(540, 540)
-slime2 = enemies.Slime(400, 780)
-slimelist = [slime, slime2]
+player = character.Player(224, 0)
+slimelist = [enemies.BlueSlime(540, 540), enemies.BlueSlime(400, 780)]
 
-sound.beta_soundtrack()
+#sound.beta_soundtrack()
 
 while True:
     clock.tick(30)
-    player.update(tiles)
+    pygame.display.set_caption(f"{player.rect.x}, {player.rect.y} - {player.health}")
+    player.update(level)
+    player.check_collision_enemy(slimelist)
     for action in pygame.event.get():
         if action.type == pygame.QUIT:
-            sound.stop_music()
+            #sound.stop_music()
             exit()
     drawscreen()

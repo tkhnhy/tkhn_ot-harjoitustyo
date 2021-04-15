@@ -1,9 +1,9 @@
 import pygame
 
-class Slime(pygame.sprite.Sprite):
+class BlueSlime(pygame.sprite.Sprite):
     def __init__(self, x, y):
         
-        self.sprite = pygame.image.load("assets/temp/blueslime0000.png")
+        self.sprite = pygame.image.load("src/assets/temp/blueslime0000.png")
         self.sprite = pygame.transform.scale(self.sprite, (24, 16))
 
         self.rect = self.sprite.get_rect()
@@ -13,5 +13,5 @@ class Slime(pygame.sprite.Sprite):
     def slime_movement_horizonal(self, counter):
         pass
 
-    def slimedraw(self, output):
+    def draw(self, output):
         output.blit(self.sprite, (self.rect.x, self.rect.y))
